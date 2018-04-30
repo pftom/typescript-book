@@ -43,12 +43,12 @@ Notice that the IIFE allows TypeScript to easily capture the base class `Point` 
 ### `__extends`
 You will notice that as soon as you inherit a class TypeScript also generates the following function:
 ```ts
-var __extends = this.__extends || function (d, b) {
+var __extends = (this && this.__extends) || (function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     __.prototype = b.prototype;
     d.prototype = new __();
-};
+})();
 ```
 Here `d` refers to the derived class and `b` refers to the base class. This function does two things:
 1. copies the static members of the base class onto the child class i.e. `for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];`
